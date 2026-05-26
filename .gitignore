@@ -8,3 +8,5 @@ writable/logs/
 docker/mysql/data/
 ROADMAP.md
 ARQUITECTURA.md
+.claude/
+.opencode/
