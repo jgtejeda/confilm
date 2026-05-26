@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(docker exec *)",
+      "Bash(php -l app/Database/Migrations/2025-01-01-000005_CreateDocumentsTable.php)",
+      "Bash(php -l app/Database/Migrations/2025-01-01-000006_CreateInscriptionsTable.php)",
+      "Bash(php -l app/Database/Migrations/2025-01-01-000007_CreateNotificationsTable.php)",
+      "Bash(php -l app/Models/NotificationModel.php)",
+      "Bash(php -l app/Models/UserModel.php)",
+      "Bash(grep -E \"^\\\\s+\\\\`[a-z_]+\\\\`\" app/Database/Migrations/2025-01-01-000005_CreateDocumentsTable.php)",
+      "Bash(grep -E \"^\\\\s+\\\\`[a-z_]+\\\\`\" app/Database/Migrations/2025-01-01-000006_CreateInscriptionsTable.php)",
+      "Bash(openspec status *)",
+      "Bash(openspec instructions *)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} — GET /comisionfilm/login\" http://localhost/comisionfilm/login)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code} — GET /comisionfilm/\" http://localhost/comisionfilm/)",
+      "Bash(grep -n \"public \\\\$\\\\|public string \\\\$\\\\|public int \\\\$\\\\|public bool \\\\$\" /Volumes/Workspace/Proyectos_SECTURI/comision-film/app/vendor/phpmailer/phpmailer/src/PHPMailer.php)",
+      "Bash(openspec new *)",
+      "Bash(curl -s \"http://localhost/comisionfilm/login\")",
+      "Bash(curl -s \"http://localhost/comisionfilm/assets/css/auth.css\")",
+      "Bash(docker compose *)"
+    ]
+  }
+}

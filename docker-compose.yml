@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  app:
+    container_name: rcf_app
+    build:
+      context: ./docker/apache
+    ports:
+      - "80:80"
+    volumes:
+      - ./app:/var/www/html
+      - ./docker/apache/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
+    networks:
+      - red_interna
+    depends_on:
+      - db
+    environment:
+      CI_ENVIRONMENT: development
+
+  db:
+    container_name: rcf_mysql
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - red_interna
+
+  maildev:
+    container_name: rcf_maildev
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    networks:
+      - red_interna
+
+volumes:
+  mysql_data:
+
+networks:
+  red_interna:
+    driver: bridge

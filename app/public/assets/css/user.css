@@ -1,0 +1,390 @@
+/* ================================================================
+   USER DASHBOARD — Layout & Components
+   Comisión Film MX
+   ================================================================ */
+
+:root {
+    --navbar-height: 64px;
+    --color-bg: #0f0f0f;
+    --color-surface: #1a1a1a;
+    --color-surface-hover: #222222;
+    --color-accent: #d4a04a;
+    --color-accent-dim: rgba(212, 160, 74, 0.15);
+    --color-text: #f5f0e8;
+    --color-text-muted: rgba(245, 240, 232, 0.5);
+    --color-text-dim: rgba(245, 240, 232, 0.7);
+    --color-border: rgba(212, 160, 74, 0.13);
+    --color-status-pending: #f59e0b;
+    --color-status-approved: #10b981;
+    --color-status-rejected: #ef4444;
+    --color-status-no-loaded: #6b7280;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+}
+
+/* ================================================================
+   NAVBAR HORIZONTAL
+   ================================================================ */
+
+.user-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--navbar-height);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    z-index: 100;
+}
+
+.user-navbar-brand {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.user-navbar-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.user-navbar-link {
+    color: var(--color-text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.user-navbar-link:hover {
+    color: var(--color-text);
+}
+
+.user-navbar-link.is-active {
+    color: var(--color-accent);
+}
+
+.user-navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-navbar-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-bg);
+}
+
+.user-navbar-name {
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.user-navbar-notif {
+    position: relative;
+    cursor: pointer;
+    color: var(--color-text-dim);
+    transition: color 0.2s;
+}
+
+.user-navbar-notif:hover {
+    color: var(--color-text);
+}
+
+#notif-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--color-status-rejected);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 5px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+    display: none;
+}
+
+#notif-badge.has-notifs {
+    display: block;
+}
+
+.user-navbar-logout {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+}
+
+.user-navbar-logout:hover {
+    color: var(--color-status-rejected);
+}
+
+/* ================================================================
+   MAIN CONTENT
+   ================================================================ */
+
+.user-main {
+    margin-top: var(--navbar-height);
+    padding: 2rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ================================================================
+   CARDS / SECTIONS
+   ================================================================ */
+
+.dashboard-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+/* ================================================================
+   MIS DATOS
+   ================================================================ */
+
+.user-data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.user-data-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.user-data-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.user-data-value {
+    font-size: 0.95rem;
+    color: var(--color-text);
+}
+
+/* ================================================================
+   STATUS CHIPS
+   ================================================================ */
+
+.doc-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.doc-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    background: var(--color-surface-hover);
+    border: 1px solid var(--color-border);
+}
+
+.doc-chip-name {
+    color: var(--color-text);
+}
+
+.doc-chip-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.doc-chip-badge.pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--color-status-pending);
+}
+
+.doc-chip-badge.approved {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--color-status-approved);
+}
+
+.doc-chip-badge.rejected {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--color-status-rejected);
+}
+
+.doc-chip-badge.no-loaded {
+    background: rgba(107, 114, 128, 0.15);
+    color: var(--color-status-no-loaded);
+}
+
+/* ================================================================
+   TIMELINE
+   ================================================================ */
+
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-border);
+}
+
+.timeline-step {
+    position: relative;
+    padding-bottom: 1.5rem;
+    opacity: 1;
+}
+
+.timeline-step::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-surface-hover);
+    border: 2px solid var(--color-border);
+    z-index: 1;
+}
+
+.timeline-step.completed::before {
+    background: var(--color-status-approved);
+    border-color: var(--color-status-approved);
+}
+
+.timeline-step.active::before {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px var(--color-accent-dim);
+}
+
+.timeline-step-title {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+
+.timeline-step.completed .timeline-step-title {
+    color: var(--color-text-muted);
+}
+
+.timeline-step.active .timeline-step-title {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.timeline-step-desc {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+/* ================================================================
+   NO INSCRIPTION MESSAGE
+   ================================================================ */
+
+.no-inscription {
+    text-align: center;
+    padding: 3rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+}
+
+.no-inscription-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+}
+
+.no-inscription-text {
+    color: var(--color-text-dim);
+    margin-bottom: 1.5rem;
+}
+
+.no-inscription-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.no-inscription-link:hover {
+    opacity: 0.9;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 768px) {
+    .user-navbar {
+        padding: 0 1rem;
+    }
+
+    .user-navbar-links {
+        display: none;
+    }
+
+    .user-main {
+        padding: 1rem;
+    }
+
+    .user-data-grid {
+        grid-template-columns: 1fr;
+    }
+}

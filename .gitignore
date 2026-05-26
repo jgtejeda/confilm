@@ -1,0 +1,10 @@
+.env
+vendor/
+app/vendor/
+writable/cache/
+writable/logs/
+.DS_Store
+*.log
+docker/mysql/data/
+ROADMAP.md
+ARQUITECTURA.md
